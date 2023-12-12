@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles2.css">
+	<link rel="stylesheet" href="review.css">
+    <title>Gluten Free Pumpkin Pie</title>
+	
+	<script>
+        document.addEventListener("DOMContentLoaded", function ()
+		{
+            // XML content
+            var xmlContent = `
+                <restaurant_reviews>
+                    <review>
+                        <id>10</id>
+                        <username>Michael Smith</username>
+                        <rating>4</rating>
+                        <comment>I've tried many gluten-free recipes, and this pumpkin pie is top-notch! The crust is not only gluten-free but also holds up well. The texture of the pie is spot on, and the taste is heavenly. Bravo on creating a gluten-free masterpiece!</comment>
+                        <food_type>American</food_type>
+                    </review>
+                    <review>
+                        <id>8</id>
+                        <username>Christopher Taylor</username>
+                        <rating>5</rating>
+                        <comment>As someone with gluten sensitivity, finding a delicious pumpkin pie I can enjoy is a game-changer. The almond flour crust adds a nice nutty flavor, and the velvety pumpkin filling is simply divine. Thank you for a gluten-free delight!</comment>
+                        <food_type>American</food_type>
+                    </review>
+					<review>
+                        <id>6</id>
+                        <username>Emily Johnson</username>
+                        <rating>4.5</rating>
+                        <comment>Gluten-free or not, this pumpkin pie is a winner! The crust is surprisingly good, and the pumpkin flavor shines through. It's a must-try for anyone, whether you're gluten-sensitive or not. I'll be making it all season long.</comment>
+                        <food_type>American</food_type>
+                    </review>
+                    <review>
+                        <id>6</id>
+                        <username>Ashley Davis</username>
+                        <rating>5</rating>
+                        <comment>This gluten-free pumpkin pie is a fall masterpiece! The crust is wonderfully flaky, and the filling has the perfect blend of spices. It's hard to believe it's gluten-free. A new holiday tradition for our family!</comment>
+                        <food_type>American</food_type>
+                    </review>
+                </restaurant_reviews>`;
+
+            
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xmlContent, "application/xml");
+
+            
+            displayReviews(xmlDoc);
+        });
+
+        function displayReviews(xml) {
+            var reviews = xml.getElementsByTagName("review");
+            var reviewsContainer = document.getElementById("reviews-container");
+
+            
+            if (reviews.length === 0) {
+                reviewsContainer.innerHTML = "No reviews available.";
+                return;
+            }
+
+            
+            for (var i = 0; i < reviews.length; i++) {
+                var review = reviews[i];
+                var id = review.getElementsByTagName("id")[0].textContent;
+                var username = review.getElementsByTagName("username")[0].textContent;
+                var rating = review.getElementsByTagName("rating")[0].textContent;
+                var comment = review.getElementsByTagName("comment")[0].textContent;
+                var foodType = review.getElementsByTagName("food_type")[0].textContent;
+
+                
+                var testimonialBox = document.createElement("div");
+                testimonialBox.className = "testimonial-box";
+
+               
+                var boxTop = document.createElement("div");
+                boxTop.className = "box-top";
+
+                var profile = document.createElement("div");
+                profile.className = "profile";
+
+                
+                var nameUser = document.createElement("div");
+                nameUser.className = "name-user";
+                var strong = document.createElement("strong");
+                strong.textContent = username;
+                var span = document.createElement("span");
+                span.textContent = "@" + username;
+                nameUser.appendChild(strong);
+                nameUser.appendChild(span);
+
+                profile.appendChild(nameUser);
+
+                
+                var reviewsDiv = document.createElement("div");
+                reviewsDiv.className = "reviews";
+                reviewsDiv.innerHTML = "<h3>Rating: " + rating + "</h3>";
+
+                
+                var foodTypeDiv = document.createElement("div");
+                foodTypeDiv.className = "foodtype";
+                foodTypeDiv.innerHTML = "<h6>Food : " + foodType + "</h6>";
+
+                
+                boxTop.appendChild(profile);
+                boxTop.appendChild(reviewsDiv);
+                boxTop.appendChild(foodTypeDiv);
+
+                
+                testimonialBox.appendChild(boxTop);
+
+                
+                var clientComment = document.createElement("div");
+                clientComment.className = "client-comment";
+                var p = document.createElement("p");
+                p.textContent = comment;
+                clientComment.appendChild(p);
+
+                
+                testimonialBox.appendChild(clientComment);
+
+              
+                reviewsContainer.appendChild(testimonialBox);
+            }
+        }
+    </script>
+	
+</head>
+<body>
+    <header>
+        <div class="logo">
+		
+        <a href="index.html" class="logo"><img rel="log" type="image/png" src="img2/faviconSix.png" height="80" width="225">
+        </a>
+    </div>
+        <nav>
+            <ul>
+                <li><a href="#">Recipes</a>
+				<ul>
+				
+				<li><a href="#">Main Course</a></li>
+               <li><a href="#">Side Dish</a></li>
+                <li><a href="#">Dessert</a></li>
+               <li><a href="#">Appetizer</a></li>
+               <li> <a href="#">Salad</a></li>
+                <li><a href="#">Bread</a></li>
+               <li> <a href="#">Breakfast</a></li>
+               <li> <a href="#">Soup</a></li>
+               <li> <a href="#">Beverage</a></li>
+               <li> <a href="#">Sauce</a></li>
+               <li> <a href="#">Drink</a></li>
+					
+				  </ul>
+				
+				</li>
+				
+                <li><a href="#">Quick and Easy</a>
+				  <ul>
+					<li><a href="#">Link 1</a></li>
+					<li><a href="#">Link 2</a></li>
+					<li><a href="#">Link 3</a></li>
+				  </ul>
+				</li>
+				
+                <li><a href="#">Cuisine</a>
+				<ul>
+					<li><a href="american.html">American</a></li>
+					<li><a href="african.html">African</a></li>
+					<li><a href="#">Chinese</a></li>
+					<li><a href="#">Japanese</a></li>
+					<li><a href="#">Korean</a></li>
+					<li><a href="#">Thai</a></li>
+					<li><a href="#">Indian</a></li>
+					<li><a href="#">British</a></li>
+					<li><a href="#">Irish</a></li>
+					<li><a href="#">French</a></li>
+					<li><a href="#">Mexican</a></li>
+					<li><a href="#">Middle Eastern</a></li>
+					<li><a href="#">Greek</a></li>
+					
+				  </ul>
+				</li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+	</header>
+
+<body>
+
+<Main>
+<div class="recipe-container">
+        <div class="recipe-details">
+            <div>
+                <div class="recipe-title">Gluten Free Pumpkin Pie</div>
+                <div class="recipe-rating">Rating: 4.5/5</div>
+            </div>
+            
+        </div>
+        <div class="recipe-image" style="background-image: url('img2/recipe-image2.jpg');"></div>
+    </div>
+	
+<div class="recipe-info">
+<div class="recipe-con">
+        <h2>Gluten Free Pumpkin Pie</h2>
+		<p> </p>
+		 <p><i> Active Time	25 minutes </i></p>
+		 <p><i> Total Time	1 hours plus cooling </i></p>
+		 
+        <p>
+            This recipe for gluten-free pumpkin pie has it all: a tasty crust, a spiced pumpkin filling, 
+			and simple stages that can be completed several days ahead of time. The filling has an autumnal 
+			flavor thanks to the ginger and ground cinnamon, but you may adjust the recipe by adding your preferred 
+			pumpkin pie spices, such as ground cardamom or allspice, or a dash of vanilla extract.
+
+        </p>
+        <p>
+            The gluten-free pie crust recipe is especially revelatory for people who have previously been burned by gluten-free baking. A tiny quantity of an all-purpose gluten-free flour blend is included in the mixture, but store-bought or homemade oat flour—made by pulverizing old-fashioned oats in a food processor—provides the majority of the flour blend's nutty punch.   
+        </p>
+        <p>
+            Serve this just like a regular pumpkin pie, or top each slice with a spoonful of whipped cream.For a Thanksgiving dessert mashup, sprinkle with flaky sea salt or a handful of candied brown sugar pecans.
+        </p>
+        <p>
+           You can prepare the dough up to three days prior to baking (refrigerate till use). This will cut down on prep time.
+        </p>
+        <p>
+            
+        </p>
+		 
+        <h3>What you’ll need</h3>
+        <ul>
+            <li>8–12 servings Crust</li>
+            <li>Gluten-free all-purpose flour (for surface)</li>
+            <li>1 disk Gluten-Free Pie Crust plus 1 optional disk for garnish</li>
+            <li>Filling and assembly</li>
+            <li>2 large eggs plus 1 large egg yolk, divided</li>
+            <li>1 cup dark-amber maple syrup</li>
+            <li>2 cups canned pumpkin purée</li>
+            <li>1 cup heavy cream</li>
+            <li>⅔ cup whole milk</li>
+            <li>1 tsp. cinnamon</li>
+            <li>1 tsp. ground ginger</li>
+            <li>½ tsp. Diamond Crystal or ¼ tsp. Morton kosher salt</li>
+            <li> </li>
+        </ul>
+    </div>
+	
+	
+	<div id="testimonials">
+		<h2> REVIEWS	</h2>	
+        <div id="reviews-container"></div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+</Main>
+
+    
+</body>
+
+	
+	<footer class="footer">
+  <div class="footer__addr">
+    <h1 class="footer__logo">TWELVE TOMATOES</h1>
+        
+    <h2>Contact</h2>
+    
+    <address>
+      Loyola University Chicago IL, 60622 USA<br>
+          
+      <a class="footer__btn" href="mailto:Rushi@gmail.com">Email Us</a>
+    </address>
+  </div>
+  
+  <ul class="footer__nav">
+    <li class="nav__item">
+      <h2 class="nav__title">Media</h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Social</a>
+        </li>
+
+        <li>
+          <a href="#">Print</a>
+        </li>
+            
+        <li>
+          <a href="#">Alternative Ads</a>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="nav__item">
+      <h2 class="nav__title">Legal</h2>
+      
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Privacy Policy</a>
+        </li>
+        
+        <li>
+          <a href="#">Terms of Use</a>
+        </li>
+        
+        <li>
+          <a href="#">Sitemap</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <div class="legal">
+    <p>&copy; 2023 TWELVE TOMATOES. All rights reserved.</p>
+    
+    <div class="legal__links">
+      <span>Made with <span class="heart">♥</span> by Rushi</span>
+    </div>
+  </div>
+</footer>
+	
+	
+</html>

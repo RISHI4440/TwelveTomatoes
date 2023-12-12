@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles2.css">
+	<link rel="stylesheet" href="review.css">
+    <title>Root Vegetable Mafé</title>
+	
+	<script>
+        document.addEventListener("DOMContentLoaded", function ()
+		{
+            // XML content
+            var xmlContent = `
+                <restaurant_reviews>
+                    <review>
+                        <id>10</id>
+                        <username>Emily Baker</username>
+                        <rating>5</rating>
+                        <comment>As a fan of root vegetables, I couldn't resist trying the Root Vegetable Mafé. It exceeded my expectations! The vegetables were perfectly cooked, and the peanut-based sauce added a wonderful depth of flavor. A tasty and wholesome option for any meal.</comment>
+                        <food_type>African</food_type>
+                    </review>
+                    <review>
+                        <id>8</id>
+                        <username>Grace Thompson</username>
+                        <rating>4</rating>
+                        <comment> This Root Vegetable Mafé recipe is a game-changer! The balance of textures and the richness of the sauce make it a standout dish. I appreciate the creativity in combining root vegetables with the traditional Mafé flavors. It's now a regular in my weekly meal rotation.</comment>
+                        <food_type>African</food_type>
+                    </review>
+					<review>
+                        <id>6</id>
+                        <username>Emily Johnson</username>
+                        <rating>4.5</rating>
+                        <comment>The Root Vegetable Mafé is a culinary masterpiece! The blend of flavors from the root vegetables and the rich Mafé sauce creates a taste sensation. It's a hearty and comforting dish that's now a family favorite. Highly recommended!</comment>
+                        <food_type>African</food_type>
+                    </review>
+                    <review>
+                        <id>6</id>
+                        <username>Justin Turner</username>
+                        <rating>5</rating>
+                        <comment>This Root Vegetable Mafé recipe is a game-changer! The balance of textures and the richness of the sauce make it a standout dish. I appreciate the creativity in combining root vegetables with the traditional Mafé flavors. It's now a regular in my weekly meal rotation.</comment>
+                        <food_type>African</food_type>
+                    </review>
+                </restaurant_reviews>`;
+
+            
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xmlContent, "application/xml");
+
+            
+            displayReviews(xmlDoc);
+        });
+
+        function displayReviews(xml) {
+            var reviews = xml.getElementsByTagName("review");
+            var reviewsContainer = document.getElementById("reviews-container");
+
+            
+            if (reviews.length === 0) {
+                reviewsContainer.innerHTML = "No reviews available.";
+                return;
+            }
+
+            
+            for (var i = 0; i < reviews.length; i++) {
+                var review = reviews[i];
+                var id = review.getElementsByTagName("id")[0].textContent;
+                var username = review.getElementsByTagName("username")[0].textContent;
+                var rating = review.getElementsByTagName("rating")[0].textContent;
+                var comment = review.getElementsByTagName("comment")[0].textContent;
+                var foodType = review.getElementsByTagName("food_type")[0].textContent;
+
+                
+                var testimonialBox = document.createElement("div");
+                testimonialBox.className = "testimonial-box";
+
+               
+                var boxTop = document.createElement("div");
+                boxTop.className = "box-top";
+
+                var profile = document.createElement("div");
+                profile.className = "profile";
+
+                
+                var nameUser = document.createElement("div");
+                nameUser.className = "name-user";
+                var strong = document.createElement("strong");
+                strong.textContent = username;
+                var span = document.createElement("span");
+                span.textContent = "@" + username;
+                nameUser.appendChild(strong);
+                nameUser.appendChild(span);
+
+                profile.appendChild(nameUser);
+
+                
+                var reviewsDiv = document.createElement("div");
+                reviewsDiv.className = "reviews";
+                reviewsDiv.innerHTML = "<h3>Rating: " + rating + "</h3>";
+
+                
+                var foodTypeDiv = document.createElement("div");
+                foodTypeDiv.className = "foodtype";
+                foodTypeDiv.innerHTML = "<h6>Food : " + foodType + "</h6>";
+
+                
+                boxTop.appendChild(profile);
+                boxTop.appendChild(reviewsDiv);
+                boxTop.appendChild(foodTypeDiv);
+
+                
+                testimonialBox.appendChild(boxTop);
+
+                
+                var clientComment = document.createElement("div");
+                clientComment.className = "client-comment";
+                var p = document.createElement("p");
+                p.textContent = comment;
+                clientComment.appendChild(p);
+
+                
+                testimonialBox.appendChild(clientComment);
+
+              
+                reviewsContainer.appendChild(testimonialBox);
+            }
+        }
+    </script>
+	
+</head>
+<body>
+    <header>
+        <div class="logo">
+		
+        <a href="index.html" class="logo"><img rel="log" type="image/png" src="img2/faviconSix.png" height="80" width="225">
+        </a>
+    </div>
+        <nav>
+            <ul>
+                <li><a href="#">Recipes</a>
+				<ul>
+				
+				<li><a href="#">Main Course</a></li>
+               <li><a href="#">Side Dish</a></li>
+                <li><a href="#">Dessert</a></li>
+               <li><a href="#">Appetizer</a></li>
+               <li> <a href="#">Salad</a></li>
+                <li><a href="#">Bread</a></li>
+               <li> <a href="#">Breakfast</a></li>
+               <li> <a href="#">Soup</a></li>
+               <li> <a href="#">Beverage</a></li>
+               <li> <a href="#">Sauce</a></li>
+               <li> <a href="#">Drink</a></li>
+					
+				  </ul>
+				
+				</li>
+				
+                <li><a href="#">Quick and Easy</a>
+				  <ul>
+					<li><a href="#">Link 1</a></li>
+					<li><a href="#">Link 2</a></li>
+					<li><a href="#">Link 3</a></li>
+				  </ul>
+				</li>
+				
+                <li><a href="#">Cuisine</a>
+				<ul>
+					<li><a href="american.html">American</a></li>
+					<li><a href="african.html">African</a></li>
+					<li><a href="#">Chinese</a></li>
+					<li><a href="#">Japanese</a></li>
+					<li><a href="#">Korean</a></li>
+					<li><a href="#">Thai</a></li>
+					<li><a href="#">Indian</a></li>
+					<li><a href="#">British</a></li>
+					<li><a href="#">Irish</a></li>
+					<li><a href="#">French</a></li>
+					<li><a href="#">Mexican</a></li>
+					<li><a href="#">Middle Eastern</a></li>
+					<li><a href="#">Greek</a></li>
+					
+				  </ul>
+				</li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+	</header>
+
+<body>
+
+<Main>
+<div class="recipe-container">
+        <div class="recipe-details">
+            <div>
+                <div class="recipe-title">Root Vegetable Mafé</div>
+                <div class="recipe-rating">Rating: 4.5/5</div>
+            </div>
+            
+        </div>
+        <div class="recipe-image" style="background-image: url('img2/recipe-image3.jpg');"></div>
+    </div>
+	
+<div class="recipe-info">
+<div class="recipe-con">
+        <h2>Root Vegetable Mafé</h2>
+		<p> </p>
+		 <p><i> Active Time	30 minutes </i></p>
+		 <p><i> Total Time	20 Min for cooling </i></p>
+		 
+        <p>
+          Mafé smells so good it takes me back to my early years. One of the mother sauces of West African cooking, peanut sauce bears some resemblance to Mexican mole in that both are nut-based sauces that are thickened by slow heating. The traditional West African mafé is nearly always made with lamb, chicken, or fish, but this vegan version I'm sharing here is so elegant and simple that I love it. There are so many tasty and nutritious root veggies in my mafé, such cassava, carrots, sweet potatoes, and turnips. It's ideal if you're hosting a diverse group of visitors, including ravenous individuals with varying dietary needs.
+        </p>
+        <p>
+          Traditionally, the vegetables are cooked together in the same pot with the sauce, but I prefer to blanch the various vegetables because this allows me to have better control of the cooking of each individual vegetable. When they are ready to serve, I simply add them to the stew to finish cooking and to reheat. This also visibly enhances the natural colors and textures of the vegetables, making the dish that much more beautiful and presentable.
+        </p>
+        <p>
+          The different veggies are traditionally cooked in the same pot as the sauce, but I find that blanching the vegetables gives me more control over how long each vegetable cooks. I just toss them into the stew to continue cooking and reheat when I'm ready to serve. The natural hues and textures of the veggies are also noticeably enhanced by this, adding even more beauty and presentation to the dish.
+        </p>
+        <p>
+          This recipe is taken from one of the best cookbooks of 2023, "Simply West African," by Pierre Thiam. 
+        </p>
+        <p>
+            
+        </p>
+		 
+        <h3>What you’ll need</h3>
+        <ul>
+            <li>1 Tbsp. peanut or vegetable oil</li>
+            <li>1 cup finely chopped yellow onion</li>
+            <li>2 tsp. finely chopped garlic</li>
+            <li>1 heaping Tbsp. tomato paste</li>
+            <li>2 cups unsweetened creamy peanut butter</li>
+            <li>1 cup dark-amber maple syrup</li>
+            <li>1 Scotch bonnet or habanero chili, left whole (optional)</li>
+            <li>1 tsp. freshly ground black pepper</li>
+            <li>4 medium carrots, cut into 2-inch chunks</li>
+            <li>10 medium okra pods, cut into ½-inch slices (optional)</li>
+            <li>1 tsp. ground ginger</li>
+            <li>Cooked rice, for serving</li>
+            <li> </li>
+        </ul>
+    </div>
+	
+	
+	<div id="testimonials">
+		<h2> REVIEWS	</h2>	
+        <div id="reviews-container"></div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+</Main>
+
+    
+</body>
+
+	
+	<footer class="footer">
+  <div class="footer__addr">
+    <h1 class="footer__logo">TWELVE TOMATOES</h1>
+        
+    <h2>Contact</h2>
+    
+    <address>
+      Loyola University Chicago IL, 60622 USA<br>
+          
+      <a class="footer__btn" href="mailto:Rushi@gmail.com">Email Us</a>
+    </address>
+  </div>
+  
+  <ul class="footer__nav">
+    <li class="nav__item">
+      <h2 class="nav__title">Media</h2>
+
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Social</a>
+        </li>
+
+        <li>
+          <a href="#">Print</a>
+        </li>
+            
+        <li>
+          <a href="#">Alternative Ads</a>
+        </li>
+      </ul>
+    </li>
+    
+    <li class="nav__item">
+      <h2 class="nav__title">Legal</h2>
+      
+      <ul class="nav__ul">
+        <li>
+          <a href="#">Privacy Policy</a>
+        </li>
+        
+        <li>
+          <a href="#">Terms of Use</a>
+        </li>
+        
+        <li>
+          <a href="#">Sitemap</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  
+  <div class="legal">
+    <p>&copy; 2023 TWELVE TOMATOES. All rights reserved.</p>
+    
+    <div class="legal__links">
+      <span>Made with <span class="heart">♥</span> by Rushi</span>
+    </div>
+  </div>
+</footer>
+	
+	
+</html>
